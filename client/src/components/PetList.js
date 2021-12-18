@@ -6,6 +6,7 @@ import AdoptPet from "./AdoptPet";
 
 const PetList = (props) => {
   const { pets, setPets } = props;
+  console.log("pets is ", pets);
 
   useEffect(() => {
     axios
@@ -23,27 +24,6 @@ const PetList = (props) => {
   };
 
   return (
-    // <div>
-    //   {pets.map((pet, index) => (
-    //     <div key={index}>
-    //       <p>
-    //         {pet.petName}, {pet.petType}, {pet.petDescription}
-    //       </p>
-    //       <p>
-    //         {pet.petSkills.map((skill, skillIndex) => (
-    //           <span key={skillIndex}>{skill}</span>
-    //         ))}
-    //       </p>
-    //       <Link to={`/pets/${pet._id}/edit`}>
-    //         <p>Update</p>
-    //       </Link>
-    //       <AdoptPet id={pet._id} adoptFilter={adoptFilter}>
-    //         Adopt
-    //       </AdoptPet>
-    //     </div>
-    //   ))}
-    // </div>
-
     <div>
       <Table striped bordered hover size="sm">
         <thead>
@@ -54,23 +34,25 @@ const PetList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {pets.map((pet, index) => (
-            <tr key={index}>
-              <td>{pet.petName}</td>
-              <td>{pet.petType}</td>
-              <td>
-                <Link
-                  to={`/pets/${pet._id}`}
-                  state={{
-                    pet: pet,
-                  }}
-                >
-                  details
-                </Link>{" "}
-                | <Link to={`/pets/${pet._id}/edit`}>edit</Link>
-              </td>
-            </tr>
-          ))}
+          {pets
+            ? pets.map((pet, index) => (
+                <tr key={index}>
+                  <td>{pet.petName}</td>
+                  <td>{pet.petType}</td>
+                  <td>
+                    <Link
+                      to={`/pets/${pet._id}`}
+                      state={{
+                        pet: pet,
+                      }}
+                    >
+                      details
+                    </Link>{" "}
+                    | <Link to={`/pets/${pet._id}/edit`}>edit</Link>
+                  </td>
+                </tr>
+              ))
+            : null}
         </tbody>
       </Table>
     </div>
