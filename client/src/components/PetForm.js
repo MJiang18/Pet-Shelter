@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 const PetForm = (props) => {
   const { onSubmitForm, pet, setPet, errors, action } = props;
@@ -28,6 +29,10 @@ const PetForm = (props) => {
 
   return (
     <div className="container">
+      <div className="header-row">
+        <h1>Pet Shelter: {action}</h1>
+        <Link to={"/"}>back to home</Link>
+      </div>
       <form onSubmit={onSubmitHandler}>
         {errors.map((error, index) => (
           <p className="error-msg" key={index}>

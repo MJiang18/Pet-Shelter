@@ -10,7 +10,7 @@ const PetList = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000")
+      .get("http://localhost:8000/")
       .then((pets) => {
         console.log(pets.data);
         setPets(pets.data);
